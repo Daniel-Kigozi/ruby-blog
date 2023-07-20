@@ -3,15 +3,12 @@ class Post < ApplicationRecord
   has_many :comments
   has_many :likes
 
-  after_create :increment_user_posts_counter
-  after_destroy :decrement_user_posts_counter
+  after_save :update_post_counter
 
-  def increment_user_posts_counter
+  private
+
+  def update_post_counter
     author.increment!(:posts_counter)
-  end
-
-  def decrement_user_posts_counter
-    author.decrement!(:posts_counter)
   end
 
   def recent_comments(max = 5)
