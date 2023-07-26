@@ -8,6 +8,8 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'faker', '~> 2.18', require: 'faker'
 gem 'shoulda-matchers'
 
+gem 'rails-controller-testing'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.6'
 
