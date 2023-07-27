@@ -1,1 +1,32 @@
-<p>Here is a list of posts for a given user</p>
+<h1>Here is a list of posts for a given user</h1>
+
+<% if @user %>
+  <h1>User: <%= @user.name %></h1>
+  <p>Number of Posts: <%= @user.posts_counter %></p>
+
+
+  <h1>All Posts</h1>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <a href="<%= user_post_path(post.author, post) %>">
+          <%= post.title %>
+        </a>
+        <br>
+        Number of Comments: <%= post.comments_counter %>
+        <br>
+        Number of Likes: <%= post.likes_counter %>
+
+        <ul>
+          <% post.comments.each do |comment| %>
+            <li>
+            <%= comment.user.name %>: <%= comment.text %> 
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>User not found.</p>
+<% end %>

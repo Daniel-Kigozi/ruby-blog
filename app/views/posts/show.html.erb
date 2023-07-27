@@ -1,1 +1,17 @@
-<p>Here are the details of this post</p>
+<% author = User.find(@post.author_id) %>
+
+<h1>Post <%= '&#35;'.html_safe %> <%=@post.id %>  by <%= author.name %></h1>
+<p>Likes: <%= @post.likes_counter %></p>
+<p>Comments: <%= @post.comments_counter %></p>
+
+<%= @post.text %>
+
+<h2>Comments</h2>
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li>
+    <%= comment.user.name %>: <%= comment.text %> 
+    </li>
+  <% end %>
+</ul>
+

@@ -1,1 +1,14 @@
-<p>Find the list of users</p>
+<h1 class='topic'>Find the list of users</h1>
+
+<ul class='user-list'>
+  <% @users.each do |user| %>
+    <li class='each-user'>
+    <a href="/users/<%= user.id %>">
+      <h3 id='user-name'><%= user.name %></h3>
+    </a>
+    
+    <p class='posta'>Number of posts:  <%= user.posts_counter %></p>
+    </li>
+   
+  <% end %>
+</ul>

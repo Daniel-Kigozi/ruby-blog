@@ -1,1 +1,34 @@
-<p>Find user details</p>
+<h1>Find user details</h1>
+
+<div class="user_find_container">
+  <div class="user_img_div">
+    <img class="user_img" src='<%= @user.photo_link %>'>
+  </div>
+    <div class="user_internal">
+        <h1><%= @user.name %></h1>
+        <p>Number of Posts: <%= @user.posts_counter %></p>
+    </div>
+</div>
+<div class="user_bio">
+    <p><%= @user.bio %></p>
+</div>
+
+<div class="each_post_container">
+<h2>All Posts by <%= @user.name %>:</h2>
+<ul>
+<div class="each_post">
+  <% @user.posts.each do |post| %>
+    <li>
+      <a href="<%= user_post_path(@user, post) %>">
+        <%= post.title %>
+      </a>
+      Comments: <%= post.comments_counter %>
+      Likes: <%= post.likes_counter %>
+    </li>
+    </div>
+    </div>
+  <% end %>
+</ul>
+
+
+
