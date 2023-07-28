@@ -17,7 +17,7 @@
 <h2>All Posts by <%= @user.name %>:</h2>
 <ul>
 <div class="each_post">
-  <% @user.posts.each do |post| %>
+<% @user.recent_posts.each do |post| %>
     <li>
       <a href="<%= user_post_path(@user, post) %>">
         <%= post.title %>

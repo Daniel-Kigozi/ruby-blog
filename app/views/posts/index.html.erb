@@ -18,7 +18,7 @@
         Number of Likes: <%= post.likes_counter %>
 
         <ul>
-          <% post.comments.each do |comment| %>
+          <% post.recent_comments.each do |comment| %>
             <li>
             <%= comment.user.name %>: <%= comment.text %> 
             </li>
