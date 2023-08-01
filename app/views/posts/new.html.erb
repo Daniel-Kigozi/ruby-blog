@@ -1,0 +1,29 @@
+<h2 class='heading'>Create new post</h2>
+
+<%= form_with model: @post, url: user_posts_path(current_user.id) do |form| %>
+  <% if @post.errors.any? %>
+    <div class="error-messages">
+      <% @post.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% elsif flash[:success] %>
+    <div class="success-message">
+      <p><%= flash[:success] %></p>
+    </div>
+  <% end %>
+
+  <div class='input'>
+  <div class='title'>
+    <%= form.label :title, class: 'form-label' %>
+    <%= form.text_field :title, placeholder: "Enter title...", required: true, class: 'form-input' %>
+  </div>
+  <div class='text'>
+    <%= form.label :text, class: 'form-label' %>
+    <%= form.text_area :text, placeholder: "Enter text...", required: true, class: 'form-textarea' %>
+  </div>
+</div>
+<div class='to-submit'>
+  <%= form.submit 'Create Post', class: 'submit-button' %>
+</div>
+<% end %>
