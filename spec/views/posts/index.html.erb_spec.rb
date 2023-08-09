@@ -36,7 +36,6 @@ RSpec.describe 'Post Index', type: :system do
     end
 
     it 'shows how many comments a post has.' do
-      save_and_open_page
       expect(page).to have_content('Comments')
     end
 
@@ -47,6 +46,5 @@ RSpec.describe 'Post Index', type: :system do
     it 'shows a section for pagination if there are more posts than fit on the view' do
       expect(page).to have_content('Pagination')
     end
-
   end
 end
