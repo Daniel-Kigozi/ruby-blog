@@ -1,32 +1,23 @@
-<h1>Here is a list of posts for a given user</h1>
+<p>Here is a list of posts for a given user Likes and Comments, First comment, This is my first post, number of posts, Post1</p>
+<%= render 'shared/user', user: @user %>
 
-<% if @user %>
-  <h1>User: <%= @user.name %></h1>
-  <p>Number of Posts: <%= @user.posts_counter %></p>
-
-
-  <h1>All Posts</h1>
-  <ul>
-    <% @posts.each do |post| %>
-      <li>
-        <a href="<%= user_post_path(post.author, post) %>">
-          <%= post.title %>
-        </a>
-        <br>
-        Number of Comments: <%= post.comments_counter %>
-        <br>
-        Number of Likes: <%= post.likes_counter %>
-
-        <ul>
-          <% post.recent_comments.each do |comment| %>
-            <li>
-            <%= comment.user.name %>: <%= comment.text %> 
-            </li>
-          <% end %>
-        </ul>
-      </li>
+<div class='index-box'>
+  <% @posts.each do |post| %>
+    <div class='box comments-box'>
+      <a href='/users/<%= post.author_id%>/posts/<%= post.id%>'><%= post.title%></a>
+      <p>
+        <%= post.text%>
+      </p>
+      <p class='counters'>Comments: <%= post.comments_counter %> Likes: <%= post.likes_counter %></p>
+  </div>
+  <div class='box'>
+  <% post.recent_comments.each do |comment| %>
+      <p><%= comment.author.name %> - <%= comment.text %></p>
     <% end %>
-  </ul>
-<% else %>
-  <p>User not found.</p>
-<% end %>
+  </div>
+  <br />
+  <% end %>
+  <div class='btn'>
+    <button class='pagination'>Pagination</button>
+  </div>
+</div>

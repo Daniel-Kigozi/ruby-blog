@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require 'webdrivers'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -10,6 +11,10 @@ module RubyBlog
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+
+    config.before_initialize do
+      Webdrivers::Chromedriver.required_version = '114.0.5735.90'
+    end
 
     # Configuration for the application, engines, and railties goes here.
     #

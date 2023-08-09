@@ -1,33 +1,23 @@
 <h1>Post details</h1>
 
-<% author = User.find(@post.author_id) %>
-
-<h1>Post <%= '&#35;'.html_safe %> <%=@post.id %>  by <%= author.name %></h1>
-<p>Likes: <%= @post.likes_counter %></p>
-
-<p>Comments: <%= @post.comments_counter %></p>
-<%= link_to post_likes_path(@post.author_id, @post.id) do %>
-  <p><%= "Likes: #{@post.likes_counter}" %></p>
+<div class='show-container'>
+  <div class='box'>
+    <div class='posts-container'>
+      <p><%= @post.title %> by <%= @post.author.name %></p>
+      <p>Comments: <%= @post.comments_counter %> Likes: <%= @post.likes_counter %></p>
+    </div>
+    <p>
+      <%= @post.text %>
+    </p>
+  </div>
+  <br />
+  <div class='box'>
+    <% @post.comments.each do |comment| %>
+      <p><%= comment.user.name %>: <%= comment.text %></p>
     <% end %>
-  <%= form_with url: post_likes_path(@post.author_id, @post.id) do |form| %>
-   <a><%= form.submit 'Like' %></a>
-  <% end %>
+  </div>
+  <button type="button" class="create-post-btn btn">
+    <%= link_to "Add a new comment", new_post_comment_path(user_id: @post.author.id, post_id: @post.id) %>
+  </button>
+   <%= render partial: "shared/like", locals: { like: Like.new, post_id: @post.id, user_id: @post.author.id } %>
 </div>
-
-<%= @post.text %>
-
-<h2>Comments</h2>
-<ul>
-  <% @post.comments.each do |comment| %>
-    <li>
-    <%= comment.user.name %>: <%= comment.text %> 
-    </li>
-  <% end %>
-
-  <%= form_with(model: @comment, url: post_comments_path(@post)) do |form| %>
-      <%= form.label :text, 'Comment' %>
-      <%= form.text_area :text, placeholder: 'Enter your comment...', required: true %>
-      <%= form.submit 'Create Comment', class: 'submit-button' %>
-    <% end %>
-</ul>
-
