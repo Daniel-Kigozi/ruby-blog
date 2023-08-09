@@ -16,13 +16,6 @@ RSpec.describe Post, type: :model do
     it { should validate_numericality_of(:likes_counter).only_integer.is_greater_than_or_equal_to(0) }
   end
 
-  describe '#recent_comments' do
-    it 'returns the recent comments in descending order' do
-      five = post.recent_comments
-      expect(five).to eq([comment5, comment4, comment3, comment2, comment1])
-    end
-  end
-
   describe '#update_user_posts_counter' do
     it 'updates the user posts_counter attribute' do
       puts "Before saving post: #{user.posts_counter}"

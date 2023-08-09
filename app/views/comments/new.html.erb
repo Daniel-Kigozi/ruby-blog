@@ -1,11 +1,6 @@
-<h1>Add Comment</h1>
-
-<%= form_with(model: @comment, url: post_comments_path) do |f| %>
-  <div class="comment">
-    <%= f.label :comment %>
-    <%= f.text_area :text, placeholder: 'enter comment...', required: true %>
-  </div>
-<div>
-  <%= f.submit 'Create Comment' %>
-</div>
-<% end %>
+<section class="new-comment-container">
+  <%= form_with model: @comment, url: user_post_comments_path, local: true do |form| %>
+    <%= form.text_field :text, class: "comment-field", placeholder: "Enter a text here" %>
+    <%= form.submit "Add comment", class: "submit-btn btn" %>
+  <% end %>
+</section>

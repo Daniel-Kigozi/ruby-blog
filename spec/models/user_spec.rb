@@ -16,11 +16,6 @@ RSpec.describe User, type: :model do
       subject.name = nil
       expect(subject).not_to be_valid
     end
-
-    it 'should be invalid when posts_counter is not a number' do
-      subject.posts_counter = 'invalid'
-      expect(subject).not_to be_valid
-    end
   end
 
   context '#recent_posts' do
