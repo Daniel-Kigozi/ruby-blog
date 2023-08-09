@@ -20,6 +20,12 @@ RSpec.describe 'User Show Page', type: :feature do
       expect(page).to have_xpath("//img[@src='#{@user.photo_link}']")
     end
 
+    it 'shows the number of posts of each user' do
+      User.all.each do |user|
+        expect(page).to have_content("Total number of posts are: #{user.posts_counter}")
+      end
+    end
+
     it "displays the user's username" do
       expect(page).to have_content(@user.name)
       expect(page).to have_link(@user.name, href: user_path(id: @user.id))

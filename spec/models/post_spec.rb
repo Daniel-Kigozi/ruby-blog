@@ -16,9 +16,7 @@ RSpec.describe Post, type: :model do
     it { should validate_numericality_of(:likes_counter).only_integer.is_greater_than_or_equal_to(0) }
   end
 
-  describe '#recent_comments' do
-    pass
-  end
+ 
 
   describe '#update_user_posts_counter' do
     it 'updates the user posts_counter attribute' do

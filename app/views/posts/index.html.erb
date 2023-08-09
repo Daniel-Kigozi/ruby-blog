@@ -1,16 +1,20 @@
-<p>Here is a list of posts for a given user Likes and Comments, First comment, This is my first post, number of posts, Post1</p>
+<p>Here is a list of posts for a given user</p>
+
+
 <%= render 'shared/user', user: @user %>
 
 <div class='index-box'>
   <% @posts.each do |post| %>
     <div class='box comments-box'>
       <a href='/users/<%= post.author_id%>/posts/<%= post.id%>'><%= post.title%></a>
+      
       <p>
         <%= post.text%>
       </p>
       <p class='counters'>Comments: <%= post.comments_counter %> Likes: <%= post.likes_counter %></p>
   </div>
   <div class='box'>
+  <p>Comments</p>
   <% post.recent_comments.each do |comment| %>
       <p><%= comment.author.name %> - <%= comment.text %></p>
     <% end %>
